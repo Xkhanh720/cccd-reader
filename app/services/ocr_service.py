@@ -3,7 +3,14 @@ import easyocr
 reader = easyocr.Reader(["vi", "en"], gpu=False)
 
 def read_text(image_path: str):
-    results = reader.readtext(image_path)
+    results = reader.readtext(
+    image_path,
+    decoder="beamsearch",
+    beamWidth=10,
+    mag_ratio=1.5,
+    contrast_ths=0.1,
+    adjust_contrast=0.5,
+)
 
     converted_results = []
 
